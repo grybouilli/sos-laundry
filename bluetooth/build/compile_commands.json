@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/grybouilli/projets/sos_laundry/bluetooth/build",
-  "command": "/usr/bin/avr-gcc   -Os -mmcu=atmega328p -DF_CPU=16000000 -o CMakeFiles/objects.dir/main.c.o -c /home/grybouilli/projets/sos_laundry/bluetooth/main.c",
-  "file": "/home/grybouilli/projets/sos_laundry/bluetooth/main.c",
-  "output": "CMakeFiles/objects.dir/main.c.o"
-}
-]
