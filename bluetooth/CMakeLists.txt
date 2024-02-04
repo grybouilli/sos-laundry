@@ -25,7 +25,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # .o FILES BUILD
 
 add_library(objects OBJECT
-    main.c
+    ring_buffer.c
 )
 
 target_compile_options(objects PRIVATE "${AVR_CFLAGS}")
@@ -34,7 +34,7 @@ target_compile_options(objects PRIVATE "${AVR_CFLAGS}")
 # .elf FILE BUILD
 
 add_custom_target(elf_file ALL
-    COMMAND ${CMAKE_C_COMPILER} ${AVR_CFLAGS} $<TARGET_OBJECTS:objects> -o main.elf
+    COMMAND ${CMAKE_C_COMPILER} ${AVR_CFLAGS} ../main.c $<TARGET_OBJECTS:objects> -o main.elf
     COMMENT "Producing main.elf"
 )
 
