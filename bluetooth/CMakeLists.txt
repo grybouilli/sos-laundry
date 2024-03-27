@@ -26,27 +26,38 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 add_library(objects OBJECT
     ring_buffer.c
+    uart_utils.c
 )
 
 target_compile_options(objects PRIVATE "${AVR_CFLAGS}")
 
+get_target_property(OBJECTS_SOURCES objects SOURCES)
+set(OBJECT_FILES "")
+
+# Get the object files from the source files
+foreach(source ${OBJECTS_SOURCES})
+    # Extract the file name without the extension
+    get_filename_component(filename ${source} NAME_WE)
+    # Append the .o extension to get the object file name
+    list(APPEND OBJECT_FILES "CMakeFiles/objects.dir/${filename}.c.o")
+endforeach()
 # ------------------------- 
 # .elf FILE BUILD
-
+#
 add_custom_target(elf_file ALL
-    COMMAND ${CMAKE_C_COMPILER} ${AVR_CFLAGS} ../main.c $<TARGET_OBJECTS:objects> -o main.elf
+    COMMAND ${CMAKE_C_COMPILER} ${AVR_CFLAGS} ../main.c ${OBJECT_FILES} -o main.elf
     COMMENT "Producing main.elf"
 )
-
+add_dependencies(elf_file objects)
 # -------------------------
 # .bin FILE BUILD
 
-add_custom_target(${PROJECT_NAME} ALL 
+add_custom_target(${PROJECT_NAME} ALL
     COMMAND avr-objcopy -j .text -j .data -O binary main.elf ${PROJECT_NAME}.bin
         COMMENT "Producing binary file"
     )
 
-
+add_dependencies(${PROJECT_NAME} elf_file)
 # -------------------------
 # flash the binary
 install(

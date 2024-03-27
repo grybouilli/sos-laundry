@@ -22,3 +22,6 @@ uint8_t rb_put(struct ring_buffer *rb, char c);
 char rb_read(struct ring_buffer *rb);
 
 #endif // !_RING_BUFFER_H_
+
+
+
