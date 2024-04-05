@@ -22,7 +22,7 @@ main_slave.elf: main_slave.c $(BLUETOOTH_DIR)/uart_utils.o $(BLUETOOTH_DIR)/ring
 	$(CC) $(CFLAGS) -o $@ $^                                                                                                        
                                                                                                                                   
 clean:                                                                                                                            
-	rm -f *.elf *.bin *.o *.gch                                                                                                     
+	rm -f *.elf *.bin *.o *.gch $(BLUETOOTH_DIR)/*.o
                                                                                                                                   
 install_master: main_master.bin                                                                                                                 
 	avrdude -p atmega328p -P /dev/ttyACM0 -c arduino -V -U flash:w:$<:r                                                                         

@@ -19,6 +19,3 @@ all:
                                                                                                                                   
 clean:                                                                                                                            
 	rm -f *.elf *.bin *.o *.gch                                                                                                     
-                                                                                                                                  
-install: main.bin                                                                                                                 
-	avrdude -b 57600 -p atmega328p -P /dev/ttyUSB0 -c arduino -V -U flash:w:$<:r                                                                         

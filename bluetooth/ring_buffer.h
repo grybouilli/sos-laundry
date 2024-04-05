@@ -1,7 +1,11 @@
 #ifndef _RING_BUFFER_H_
 #define _RING_BUFFER_H_
 
+#ifndef USING_GCC
 #include <avr/io.h>
+#else
+#include <stdint.h>
+#endif
 
 #define RB_SIZE 32
 struct ring_buffer {
