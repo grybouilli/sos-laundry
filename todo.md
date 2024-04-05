@@ -1,22 +1,31 @@
 # Bluetooth
 ## Common
 
- [] Initiate connection between parties
- [] Establish com protocol
- [] Ring buffer for bt message handling
+<!-- Check for connection -> connected ? start communication : keep testing connection -->
+
+ [x] Initiate connection between parties
+    -> [x] Implement connection establishment test
+
+ [x] Establish com protocol
+ [x] Ring buffer for bt message handling
+ [x] Communication test
 
 ## Server (Slave, door unit)
 
- [] UART / Bluetooth setup
- [] Handle received commands
+ [x] Setup role with AT commands
+ [x] UART / Bluetooth setup
+ [x] Handle received commands
  [] Control lights (ready & not ready states)
 
 ## Client (Master, laudromat unit)
 
- [] UART / Bluetooth setup
- [] Send commands on light detection
+ [x] Setup role with AT commands
+ [x] UART / Bluetooth setup
+ [x] Send commands on light detection
 
-# Lights
-## Detection 
+# Repo
 
-## Control
+[] Make clean Makefiles
+[] Make circuit schematics
+[] Write clear README.md
+[] Document code *(in process)*
