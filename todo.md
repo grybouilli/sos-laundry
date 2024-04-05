@@ -23,6 +23,19 @@
  [x] UART / Bluetooth setup
  [x] Send commands on light detection
 
+# Physical device
+## CAO
+
+[] Design door front system (LED Display, "Maison du Hobbit", etc)
+[] Design door back system (case for the arduino and the circuitry, back of the design etc)
+[] Design a case for the master side?
+
+## Electronics
+
+[] Solder wires on laudromat
+[] Assemble master side
+[] Assemble slave side
+
 # Repo
 
 [] Make clean Makefiles

@@ -1,1 +1,7 @@
 */build
+*.cache*
+*.o
+*.elf
+*.bin
+*.cache
+.vscode
