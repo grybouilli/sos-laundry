@@ -1,3 +1,14 @@
+/**
+ * @file main_master.c
+ * @author grybouilli (grybouilli@outlook.fr)
+ * @brief Master side of the project. Detects end of washing cycle and communicates it to the slave. Plays sound when done.
+ * @version 0.1
+ * @date 2024-04-07
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -11,28 +22,43 @@
 void setup()
 {
     // Setup washing machine start button as input pull-up
+    DDRD &= ~(1 << START_BUTTON);
     PORTD |= (1 << START_BUTTON);
 
-    // Led detection is done with simple input high detection
+    // Led detection is done with simple input-high detection
+    DDRD    &= ~(1 << LED_DETECT);
+    PORTD   &= ~(1 << LED_DETECT);
 
     setup_bt_com(9600);
 
 }
 
-volatile uint8_t connect = 0;
+/**
+ * @brief  Boolean to test BT connexion establishment
+ * 
+ */
+volatile uint8_t connect = 0; 
 
+/**
+ * @brief Handle for bluetooth message reception 
+ * @param msg The received message to handle
+ */
 void master_handler(char* msg)
 {
     char decoded[RB_SIZE];
     memset( decoded, '\0', sizeof(char)*RB_SIZE );
     decode_message(decoded,msg);
 
-    if(!strcmp(decoded, "connect"))
+    if(!strcmp(decoded, "connect")) // slave has received "connect" message => connexion is established
     {
         connect = 1;
     } 
 }
 
+/**
+ * @brief Boolean to test end of washing cycle
+ * 
+ */
 volatile uint8_t end = 0;
 
 int main()
