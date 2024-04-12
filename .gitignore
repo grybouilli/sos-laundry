@@ -5,3 +5,7 @@
 *.bin
 *.cache
 .vscode
+Doxyfile 
+latex
+html
+light_ws2812/Examples
